@@ -102,3 +102,4 @@ function startGame() {
   cancelAnimationFrame(animId);
   gameLoop();
 }
+//line 106 continued in next message
