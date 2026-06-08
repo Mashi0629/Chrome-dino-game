@@ -1,0 +1,51 @@
+/* ── Reset ───────────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Page Layout ─────────────────────────────────────────────── */
+body {
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── Title ───────────────────────────────────────────────────── */
+h1 {
+  font-size: 22px;
+  margin-bottom: 16px;
+  color: #333;
+  letter-spacing: 2px;
+}
+
+/* ── Score Bar ───────────────────────────────────────────────── */
+#scoreboard {
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* ── Canvas ──────────────────────────────────────────────────── */
+canvas {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  display: block;
+  cursor: pointer;
+}
+
+/* ── Message below canvas ────────────────────────────────────── */
+#message {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #888;
+}
