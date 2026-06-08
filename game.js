@@ -17,4 +17,58 @@ const DINO_BOTTOM = GROUND_LINE; // dino feet rest here (= ground line)
 // ── Physics Constants ─────────────────────────────────────────────
 const GRAVITY = 0.7;    // downward pull per frame
 const JUMP_VY = -14;    // upward velocity applied on jump
+ // ── Dino Object ──────────────────────────────────────────────────
+// dino.y = y position of the BOTTOM (feet) of the dino
+const dino = {
+  x:        60,
+  y:        DINO_BOTTOM,
+  vy:       0,            // vertical velocity
+  onGround: true,
+  legPhase: 0             // used to animate running legs
+};
  
+// ── Game State Variables ──────────────────────────────────────────
+let gameState  = 'idle';   // 'idle' | 'running' | 'dead'
+let score      = 0;
+let hiScore    = 0;
+let speed      = 5;        // how fast obstacles scroll
+let frameCount = 0;
+let spawnTimer = 0;
+let groundOff  = 0;        // offset for scrolling ground dashes
+let animId     = null;     // requestAnimationFrame ID
+ 
+// ── Scene Objects ─────────────────────────────────────────────────
+let obstacles = [];
+let clouds = [
+  { x: 560, y: 42 },
+  { x: 360, y: 58 },
+  { x: 160, y: 36 }
+];
+ 
+// ================================================================
+//  INPUT HANDLING
+// ================================================================
+ 
+document.addEventListener('keydown', e => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    handleInput();
+  }
+});
+ 
+canvas.addEventListener('click', handleInput);
+ 
+canvas.addEventListener('touchstart', e => {
+  e.preventDefault();
+  handleInput();
+}, { passive: false });
+ 
+function handleInput() {
+  if (gameState === 'idle' || gameState === 'dead') {
+    startGame();
+  } else if (gameState === 'running' && dino.onGround) {
+    // Make the dino jump
+    dino.vy       = JUMP_VY;
+    dino.onGround = false;
+  }
+}
