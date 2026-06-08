@@ -72,3 +72,33 @@ function handleInput() {
     dino.onGround = false;
   }
 }
+// ================================================================
+//  GAME INIT / RESET
+// ================================================================
+ 
+function startGame() {
+  // Reset all variables
+  score      = 0;
+  speed      = 5;
+  frameCount = 0;
+  spawnTimer = 0;
+  groundOff  = 0;
+  obstacles  = [];
+  clouds     = [
+    { x: 560, y: 42 },
+    { x: 360, y: 58 },
+    { x: 160, y: 36 }
+  ];
+ 
+  // Put dino back on the ground
+  dino.y        = DINO_BOTTOM;
+  dino.vy       = 0;
+  dino.onGround = true;
+  dino.legPhase = 0;
+ 
+  gameState = 'running';
+  document.getElementById('message').textContent = '';
+ 
+  cancelAnimationFrame(animId);
+  gameLoop();
+}
